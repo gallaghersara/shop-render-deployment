@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import connectDB from './config/db.js'
 import errorHandler from './middleWares/error.js'
 import userRoutes from './routes/users.js'
+import itemRoutes from './routes/items.js'
 
 connectDB()
 
@@ -16,7 +17,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use("/api", userRoutes)
+app.use("/", userRoutes)
+app.use("/", itemRoutes)
 
 app.use("/", (req,res)=>{
     return res.json({
