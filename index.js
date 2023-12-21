@@ -1,5 +1,8 @@
 import express from "express";
 import cors from "cors";
+import bodyParser from 'body-parser';
+import session from 'express-session';
+
 import dotenv from "dotenv";
 
 import connectDB from './config/db.js'
@@ -16,6 +19,17 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+
+app.use(express.static('client/build'))
+
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+  secret: 'secretsessionkey',
+  // secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+}));
 
 app.use("/", userRoutes)
 app.use("/", itemRoutes)
