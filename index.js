@@ -34,6 +34,10 @@ app.use(session({
 app.use("/", userRoutes)
 app.use("/", itemRoutes)
 
+app.get("*",(req, res) => {
+    res.sendFile(__dirname+ "/client/build/index.html")
+  } )
+  
 app.use("/", (req,res)=>{
     return res.json({
         message:"welcom to the server"
