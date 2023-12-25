@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { dataURL } from "../config";
 
 const AddProduct = () => {
   const [title, setName] = useState("");
@@ -17,7 +18,7 @@ const AddProduct = () => {
     const userId = JSON.parse(localStorage.getItem("user"))._id;
     console.warn(userId);
 
-    let result = await fetch("http://localhost:5000/add-item", {
+    let result = await fetch(`${dataURL}/add-item`, {
         method: "POST",
         body: JSON.stringify({ title, price, category, description, userId }),
         headers: {

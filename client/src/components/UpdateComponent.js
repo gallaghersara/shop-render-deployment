@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { dataURL } from "../config";
 
 const UpdateProduct = () => {
   const [title, setTitle] = useState("");
@@ -15,7 +16,7 @@ const UpdateProduct = () => {
 
   const getProductDetails = async () => {
     console.warn(params);
-    let result = await fetch(`http://localhost:5000/product/${params.id}`);
+    let result = await fetch(`${dataURL}/product/${params.id}`);
     result = await result.json();
     console.warn(result);
     setTitle(result.title);
@@ -26,7 +27,8 @@ const UpdateProduct = () => {
 
   const updateProduct = async () => {
     console.warn(title, price, category, description);
-    let result = await fetch(`http://localhost:5000/product/${params.id}`, {
+    
+    let result = await fetch(`${dataURL}/product/${params.id}`, {
       method: "PUT",
       body: JSON.stringify({ title, price, category, description }),
       headers: {

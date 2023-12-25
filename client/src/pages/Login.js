@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { dataURL } from "../config";
+
 const Login = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -7,13 +9,13 @@ const Login = () => {
 //   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
-
+  const loginPath = '/login';
 
 const handleLogin = async (e) => {
     e.preventDefault();
     console.log(name);
     try {
-      const response = await fetch("http://localhost:5000/login", {
+      const response = await fetch(`${dataURL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

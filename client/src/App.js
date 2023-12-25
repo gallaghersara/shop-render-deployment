@@ -10,6 +10,7 @@ import UpdateProduct from "./components/UpdateComponent";
 import { useEffect, useState } from "react";
 import Products from "./components/Products";
 import { StoreProvider, useProducts } from "./StoreContext";
+import { dataURL } from "./config";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -22,7 +23,7 @@ function App() {
 
   function getProducts() {
     // fetch("https://bshopfullprojectversion.onrender.com/items")
-    fetch("http://localhost:5000/items")
+    fetch(`${dataURL}/items`)
       .then((response) => response.json())
       .then((data) => {
         setAllProducts(data);

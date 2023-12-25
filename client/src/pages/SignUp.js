@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { dataURL } from "../config";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -21,7 +22,7 @@ const SignUp = () => {
     setError(null);
     setIsLoading(true);
 
-    fetch('http://localhost:5000/register', {
+    fetch(`${dataURL}/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

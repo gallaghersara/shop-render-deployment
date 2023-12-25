@@ -4,6 +4,7 @@ import FilterBy from "./FIlterBy";
 import CartDrawer from "../Cart/CartDrawer";
 import ProductInCart from "../Cart/ProductInCart";
 import { useStore } from "../../StoreContext";
+import { dataURL } from "../../config";
 
 const Nav = ({products, categories, onFilterChange, cartValues }) => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const Nav = ({products, categories, onFilterChange, cartValues }) => {
   const auth = localStorage.getItem("user");
 
   const logout = async () => {
-    await fetch("http://localhost:5000/logout", {
+    await fetch(`${dataURL}/logout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

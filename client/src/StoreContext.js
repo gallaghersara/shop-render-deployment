@@ -32,7 +32,7 @@ export const StoreProvider = ({ children }) => {
 
   const getData = async () => {
     try {
-      const response = await fetch(dataURL);
+      const response = await fetch(`${dataURL}/items`);
       const answer = await response.json();
       setData(answer);
       setLoading(false);
