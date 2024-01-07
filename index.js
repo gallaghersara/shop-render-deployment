@@ -9,12 +9,13 @@ import connectDB from './config/db.js'
 import errorHandler from './middleWares/error.js'
 import userRoutes from './routes/users.js'
 import itemRoutes from './routes/items.js'
+import passport from "passport";
+import { isAuthenticated } from "./middleWares/auth.js";
 
 connectDB()
 
 dotenv.config();
-const {MONGO_URI, PORT, DB_USER,DB_PASS,DB_HOST,DB_NAME,SESSION_SECRET} = process.env;
-
+const PORT=5000
 const app = express();
 
 app.use(express.json());
@@ -30,9 +31,10 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
 }));
+app.use(passport.session())    
 
 app.use("/", userRoutes)
-app.use("/", itemRoutes)
+app.use("/items", isAuthenticated, itemRoutes)
 
 app.get("*",(req, res) => {
     res.sendFile(__dirname+ "/client/build/index.html")
