@@ -5,7 +5,7 @@ import Item from "../models/Item.js";
 
 const router = express.Router();
 
-router.get("/items", getItems);
+router.get("/", getItems);
 
 router.get("/product/:id", async (req, res) => {
     // try {
